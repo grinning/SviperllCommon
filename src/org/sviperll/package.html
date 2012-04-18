@@ -1,0 +1,95 @@
+<!--
+Copyright (C) 2012 Victor Nazarov <asviraspossible@gmail.com>
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>
+        Package contains basic utilities and extensions for Java SE standard library
+        that can be usefull in everyday programming.
+        The purpose of the library is similar to
+        <a href="http://code.google.com/p/guava-libraries/">Google's Guava library</a>.
+    </p>
+
+    <h2>Packages</h2>
+
+    <ul>
+        <li>
+            {@link org.sviperll.cli} Provides tools to parse command
+            line arguments
+        </li>
+        <li>
+            {@link org.sviperll.collection} Provides classes and interfaces
+            for extended, more powerfull collections. Provided collections
+            are fully compatible with standard Java SE collections.
+        </li>
+        <li>{@link org.sviperll.draw} Provides small number of drawing
+            {@see java.awt.Graphics2D} utilities.
+            Wich includes: <ul>
+                <li>Versatile text drawing classes</li>
+                <li>Gausian blur filter</li>
+            </ul>
+        </li>
+        <li>{@link org.sviperll.io} Provides small number of IO
+            {@see java.io} utilities.
+            Wich includes: <ul>
+                <li>Base64 encoding</li>
+                <li>Fixed text line length output (used in Base64 encoding)</li>
+                <li>Truncated to given length streams</li>
+            </ul>
+        <li>{@link org.sviperll.mime} Provides multipart/related functionality</li>
+        <li>{@link org.sviperll.property} Provides properties as a library</li>
+    </ul>
+
+    <h2>Classes</h2>
+
+    <ul>
+        <li>
+            {@link org.sviperll.Comparables} Allow to abuse exceptions
+            as control flow to write compare/compareTo methods
+        </li>
+        <li>
+            {@link org.sviperll.Comparators} Allow the same
+            exceptions as control-flow for comparators.
+        </li>
+        <li>
+            {@link org.sviperll.CompareException} Exception classes
+            used by {@link org.sviperll.Comparables} and
+            {@link org.sviperll.Comparators}.
+        </li>
+        <li>
+            {@link org.sviperll.Mapper} Interface of mapper,
+            i. e. mathimatical/pure function.
+        </li>
+        <li>
+            {@link org.sviperll.Mappers} Utilities to use with mappers,
+            for example compose function.
+        </li>
+        <li>
+            {@link org.sviperll.Objects} General purpose utilities for
+            objects. Contains helper methods that can be used to write
+            {@link Object#toString}, {@link Object#hashCode} and
+            {@link Object#equals} methods.
+        </li>
+        <li>
+            {@link org.sviperll.Predicate} Interface for functions
+            that can be either true or false.
+        </li>
+        <li>
+            {@link org.sviperll.Predicates} Utilities for predicates,
+            i. e. boolean logic methods.
+        </li>
+        <li>
+            {@link org.sviperll.Reducer} Interface for function that combine
+            two values into one.
+        </li>
+        <li>
+            {@link org.sviperll.Strings} Utilities to use with Strings.
+        </li>
+    </ul>
+  </body>
+</html>

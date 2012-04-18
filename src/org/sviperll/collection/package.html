@@ -1,0 +1,77 @@
+<!--
+Copyright (C) 2012 Victor Nazarov <asviraspossible@gmail.com>
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>
+        Class provides decorated collection interfaces:
+    </p>
+    <ul>
+        <li>{@link java.util.Iterator} -> {@link org.sviperll.collection.eiterator.EIterator}</li>
+        <li>{@link java.util.Iterable} -> {@link org.sviperll.collection.eiterable.EIterable}</li>
+        <li>{@link java.util.Collection} -> {@link org.sviperll.collection.ecollection.ECollection}</li>
+        <li>{@link java.util.List} -> {@link org.sviperll.collection.elist.EList}</li>
+        <li>{@link java.util.Set} -> {@link org.sviperll.collection.eset.ESet}</li>
+        <li>{@link java.util.Map} -> {@link org.sviperll.collection.emap.EMap}</li>
+    </ul>
+    <p>
+        {@link org.sviperll.collection.Collections} provide main facade for
+        package content.
+    </p>
+    <p>Individual facade classes are provided for each decorated interface</p>
+    <ul>
+        <li>{@link org.sviperll.collection.eiterator.EIterators}</li>
+        <li>{@link org.sviperll.collection.eiterable.EIterables}</li>
+        <li>{@link org.sviperll.collection.ecollection.ECollections}</li>
+        <li>{@link org.sviperll.collection.elist.ELists}</li>
+        <li>{@link org.sviperll.collection.eset.ESets}</li>
+        <li>{@link org.sviperll.collection.emap.EMaps}</li>
+    </ul>
+    <p>
+        User wrap functions to convert native Java
+        collection interface to decarated interface.
+    </p>
+    <p>
+        {@link org.sviperll.collection.eiterator.closable.ClosableEIterator}
+        interface allows to use iterator interface for files and other
+        closeable resources.
+    </p>
+    <p>Here is the sample code to read each file line and sum it up:</p>
+    <blockquote>
+        <pre>{@code
+            Mapper&lt;String, Integer&gt; parseIntegerMapper = new ParseIntegerMapper();
+            Reducer&lt;Integer, Integer&gt; sumReducer = new SumReducer();
+            File path = new File('/tmp/test.txt');
+            InputStream is = new BufferedInputStream(new FileInputStream(path)), "UTF-8");
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            CloseableEIterator&lt;String&gt; lineSource = new LineReaderEIterator(br);
+            try {
+                Integer sum = lineSource.map(parseIntegerMapper).reduce(0, sumReducer);
+            } finally {
+                lineSource.close();
+            }
+        }</pre>
+    </blockquote>
+    <p>Following auxilary classes are used:</p>
+    <blockquote>
+        <pre>{@code
+            class ParseIntegerMapper implements Mapper&lt;String, Integer&gt; {
+                public Integer map(String s) {
+                    return Integer.parseInt(s);
+                }
+            }
+
+            class SumReducer implements Reducer&lt;Integer, Integer&gt; {
+                public Integer reduce(Integer base, Integer argument) {
+                    return base + argument;
+                }
+            }
+        }</pre>
+    </blockquote>
+  </body>
+</html>

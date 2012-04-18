@@ -1,0 +1,64 @@
+<!--
+Copyright (C) 2012 Victor Nazarov <asviraspossible@gmail.com>
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>
+        Package provides {@link org.sviperll.cli.CLISpec} class.
+        This class allows to specify command line interface.
+        Specification can be used to parse command line arguments
+        and to generate usage text.
+    </p>
+    <p>
+        Methods of CLISpec class uses the following interfaces
+    </p>
+    <ul>
+        <li>{@link org.sviperll.cli.CLISpec.FlagHandler}</li>
+        <li>{@link org.sviperll.cli.CLISpec.ParameterHandler}</li>
+    </ul>
+    <p>
+        Basic implementations of FlagHandler and ParameterHandler interfaces
+        are provided by
+    </p>
+    <ul>
+        <li>{@link org.sviperll.cli.FileProperty}</li>
+        <li>{@link org.sviperll.cli.IntegerProperty}</li>
+        <li>{@link org.sviperll.cli.StringArrayProperty}</li>
+    </ul>
+    <p>You can base your application cade on the following fragment:</p>
+    <blockquote>
+        <pre>{@code
+            public class Main {
+                public static void main(String[] args) throws Exception {
+                    CLISpec cliSpec = new CLISpec();
+                    Main main = new Main();
+                    cliSpec.add("pid", "Path to pidfile application folder", main.pidfile);
+                    cliSpec.add('p', "port", "Portnumber for server", main.port);
+                    try {
+                        cliSpec.run(args);
+                    } catch (Exception ex) {
+                        System.err.println(ex.getMessage());
+                        cliSpec.usage(System.out);
+                        return;
+                    }
+
+                    main.run();
+                }
+
+                // Initialize properties with default values:
+                private final IntegerProperty port = new IntegerProperty(30303);
+                private final FileProperty pidfile = new FileProperty(new File("/var/run/msisdndb.pid"));
+
+                private void run() throws Exception {
+                    // Actual application code
+                }
+            }
+        }</pre>
+    </blockquote>
+  </body>
+</html>
